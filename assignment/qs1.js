@@ -21,13 +21,7 @@ app.get('/men',async(req,res)=>{
     let tag="men's clothing";
     const data= await fetch(`https://fakestoreapi.com/products/category/${tag}`);
     const output=await data.json();
-    let op=[];
-    for (let i = 0; i <10; i++) {
-        if(output[i]===undefined){
-            break;
-        }
-        op.push(output[i])
-    }; 
+    let op=output.slice(0,10); 
     res.send(op);
     console.log(output);
    
@@ -38,8 +32,7 @@ app.get('/women',async(req,res)=>{
     let tag="women's clothing";
     const data= await fetch(`https://fakestoreapi.com/products?limit=5/category/${tag}`);
     const output=await data.json();
-    let op=[];
-    for (let i = 0; i <10; i++) {op.push(output[i])}; 
+    let op=output.slice(0,10);
     res.send(op);
     //console.log(output);
    
